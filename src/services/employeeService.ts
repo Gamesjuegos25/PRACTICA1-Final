@@ -44,8 +44,8 @@ export const employeeService = {
     return response.data;
   },
 
-  // Actualizar empleado (PATCH, no PUT — data es parcial y json-server
-  // reemplazaría el recurso completo con un PUT, perdiendo los campos que no se envían)
+  // Actualizar empleado (PATCH y no PUT: data es parcial y json-server
+  // reemplazaría el recurso completo con un PUT, perdiendo los campos no enviados)
   update: async (id: number, data: UpdateEmployeeDto): Promise<Employee> => {
     const response = await apiClient.patch<Employee>(`/employees/${id}`, data);
     return response.data;

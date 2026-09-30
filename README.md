@@ -1,37 +1,84 @@
 # Mini Sistema de RRHH
 
-Proyecto práctico del curso **Desarrollo Web (036)** — UMG, Ingeniería en Sistemas,
-Centro Universitario de Chiquimulilla. Se construye de forma incremental, clase a
-clase, a lo largo del Módulo I: Fundamentos de React + TypeScript.
+Aplicación web para la gestión de empleados. El listado y el CRUD de empleados
+se sirven desde una API local (JSON Server); la sesión (login, renovación del
+token y roles) se resuelve contra una instancia de API-RH.
 
 ## Stack
 
-- [Vite](https://vitejs.dev) — build tool y servidor de desarrollo con HMR.
-- [React 18](https://react.dev) — librería de UI.
-- [TypeScript](https://www.typescriptlang.org) — tipado estático.
-- [ESLint](https://eslint.org) (`typescript-eslint` + `eslint-plugin-react-hooks` +
-  `eslint-plugin-react-refresh`) — el linter del proyecto.
+- React 19 y TypeScript, con Vite como herramienta de build.
+- TailwindCSS para los estilos.
+- React Router para la navegación y las rutas protegidas por rol.
+- Zustand para el estado de sesión.
+- TanStack Query para el estado del servidor.
+- React Hook Form y Zod para formularios y validación.
+- Axios como cliente HTTP, con interceptores para el token y los errores.
+- react-hot-toast para las notificaciones.
+- ESLint (`typescript-eslint`) como linter.
 
-## Cómo correrlo
+## Requisitos
+
+- Node.js 20 o superior.
+- La URL base de una instancia de API-RH.
+
+## Puesta en marcha
 
 ```bash
-npm install       # instala las dependencias listadas en package.json
-npm run dev        # levanta el servidor de desarrollo en http://localhost:5173
-npm run build       # compila TypeScript (tsc -b) y genera el build de producción con Vite
-npm run lint       # corre ESLint sobre todo el proyecto
-npm run preview      # sirve el build de producción localmente, para verificarlo
+npm install
+cp .env.example .env
 ```
 
-## Estructura del proyecto
+Completa `.env` con la URL base de API-RH, sin `/api/v1` al final:
+
+```
+VITE_AUTH_API_URL=<API_BASE_URL_ASIGNADA>
+```
+
+Levanta la API local de empleados y la aplicación, cada una en su terminal:
+
+```bash
+npm run mock-api   # JSON Server en http://localhost:3001 (datos de db.json)
+npm run dev        # aplicación en http://localhost:5173
+```
+
+## Scripts
+
+| Script | Descripción |
+| --- | --- |
+| `npm run dev` | Servidor de desarrollo con recarga en caliente. |
+| `npm run build` | Compila TypeScript y genera el build de producción. |
+| `npm run lint` | Ejecuta ESLint sobre todo el proyecto. |
+| `npm run preview` | Sirve el build de producción de forma local. |
+| `npm run mock-api` | Levanta JSON Server con `db.json`. |
+
+## Estructura
 
 ```
 src/
-├── components/    # Componentes reutilizables (EmployeeCard, etc.)
-├── pages/       # Páginas completas (Login, Dashboard, Empleados) — desde clases futuras
-├── layouts/     # Estructuras de página (Header, Sidebar)
-├── hooks/       # Custom hooks — desde clases futuras
-├── store/       # Zustand stores (estado global) — desde clases futuras
-├── services/     # Llamadas a la API — desde clases futuras
-├── types/      # Interfaces y types de TypeScript compartidos
-└── utils/      # Funciones utilitarias y datos de ejemplo (mockData)
+├── components/   # Componentes reutilizables (EmployeeCard, Modal, guards, etc.)
+├── hooks/        # Hooks de TanStack Query (useEmployees)
+├── layouts/      # Estructura de página (Header)
+├── pages/        # Login, Dashboard y Empleados
+├── schemas/      # Esquemas de validación con Zod
+├── services/     # Clientes HTTP y servicios (API local y API-RH)
+├── store/        # Estado de sesión con Zustand
+├── types/        # Tipos e interfaces compartidos
+└── utils/        # Manejo de errores y datos de apoyo
 ```
+
+## Roles
+
+| Rol | Acceso |
+| --- | --- |
+| `ADMIN` | Dashboard y empleados, con permiso para eliminar. |
+| `HR_MANAGER` | Dashboard y empleados. |
+| `EMPLOYEE` | Dashboard. |
+
+El ocultamiento de opciones por rol es solo de experiencia de uso: la
+autorización real la aplica el backend.
+
+## Flujo de ramas
+
+- `main` y `stage`: ramas estables.
+- `develop`: integración.
+- `feature_*`: cambios individuales, que se integran a `develop`.

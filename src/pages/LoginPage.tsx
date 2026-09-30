@@ -71,10 +71,6 @@ function LoginPage() {
             {isLoading ? 'Iniciando sesión...' : 'Iniciar sesión'}
           </button>
         </form>
-
-        <div className="mt-4 text-xs text-slate-400 text-center">
-          <p>Usa el usuario y contraseña de tu instancia de API-RH, entregados por el docente.</p>
-        </div>
       </div>
     </div>
   );

@@ -2,8 +2,8 @@
 import { authApiClient } from './authApi';
 import type { AuthUser, AuthUserRole, LoginCredentials } from '../types';
 
-// Formas exactas del contrato real de API-RH (POST /api/v1/auth/login y
-// /api/v1/auth/refresh), tomadas de openapi.json — AuthResponseDto.
+// Formas del contrato de API-RH (POST /api/v1/auth/login y
+// /api/v1/auth/refresh), según openapi.json (AuthResponseDto).
 interface CurrentUserDto {
   id: string;
   email: string;

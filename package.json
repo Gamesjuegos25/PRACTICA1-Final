@@ -1,12 +1,8 @@
 {
   "name": "mini-proyecto",
-  "version": "0.0.0",
   "private": true,
-  "description": "Proyecto práctico del curso **Desarrollo Web (036)** — UMG, Ingeniería en Sistemas,\r Centro Universitario de Chiquimulilla. Se construye de forma incremental, clase a\r clase, a lo largo del Módulo I: Fundamentos de React + TypeScript.",
-  "license": "ISC",
-  "author": "",
+  "version": "0.0.0",
   "type": "module",
-  "main": "eslint.config.js",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -21,6 +17,7 @@
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "react-hook-form": "^7.87.0",
+    "react-hot-toast": "^2.6.1",
     "react-router-dom": "^7.18.2",
     "zod": "^4.6.2",
     "zustand": "^5.0.15"

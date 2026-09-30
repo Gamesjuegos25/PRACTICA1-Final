@@ -13,8 +13,8 @@ const statVariants = {
 function DashboardPage() {
   const userName = useAuthStore(state => state.user?.firstName) || 'invitado';
   const canManageEmployees = useHasRole(['ADMIN', 'HR_MANAGER']);
-  // Mismos datos que EmployeesPage — TanStack Query comparte el cache entre
-  // ambas pantallas, así que esto no dispara una petición nueva si ya se
+  // Mismos datos que EmployeesPage: TanStack Query comparte el caché entre
+  // ambas pantallas, por lo que no se repite la petición si ya se
   // cargó la lista sin filtros en otra vista.
   const { data } = useEmployees({});
   const employees = data?.data || [];

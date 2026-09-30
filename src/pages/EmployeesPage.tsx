@@ -20,19 +20,19 @@ const nextStatus: Record<EmployeeStatus, EmployeeStatus> = {
 };
 
 function EmployeesPage() {
-  // Esta página ya está restringida por RoleGuard a ADMIN/HR_MANAGER (App.tsx).
-  // Pero eliminar empleados, en la API real, es exclusivo de ADMIN — ni HR_MANAGER
-  // puede. Es una tercera capa de restricción: acción deshabilitada según rol,
-  // no ruta bloqueada ni sección de UI oculta.
+  // La página ya está restringida por RoleGuard a ADMIN/HR_MANAGER (App.tsx).
+  // Eliminar empleados, en la API real, es exclusivo de ADMIN (ni HR_MANAGER
+  // puede), por eso la acción se deshabilita según el rol sin bloquear la ruta
+  // ni ocultar la sección.
   const canDeleteEmployees = useHasRole(['ADMIN']);
 
-  // Estado de los filtros — esto sigue siendo estado LOCAL (de la UI), no del servidor
+  // Estado de los filtros: es estado local de la UI, no del servidor
   const [search, setSearch] = useState<string>('');
   const [selectedDepartment, setSelectedDepartment] = useState<Department | ''>('');
   const [selectedStatus, setSelectedStatus] = useState<EmployeeStatus | ''>('');
 
-  // Estado del SERVIDOR: la lista de empleados, filtrada. TanStack Query se encarga
-  // de pedirla, cachearla y mantenerla sincronizada — no hay useEffect ni useState local.
+  // Estado del servidor: la lista de empleados, filtrada. TanStack Query se encarga
+  // de pedirla, cachearla y mantenerla sincronizada, sin useEffect ni useState.
   const { data, isLoading: loading, isError, error: queryError } = useEmployees({
     search: search || undefined,
     department: selectedDepartment || undefined,
@@ -40,8 +40,8 @@ function EmployeesPage() {
   });
   const employees = data?.data || [];
 
-  // Segunda query, sin filtros — las estadísticas son sobre el TOTAL de empleados,
-  // no sobre el filtro activo, así que necesitan su propia lista completa cacheada aparte.
+  // Segunda query, sin filtros: las estadísticas son sobre el total de empleados,
+  // no sobre el filtro activo, por lo que necesitan su propia lista en caché.
   const { data: allData } = useEmployees({});
   const allEmployees = useMemo(() => allData?.data ?? [], [allData]);
   const totalEmployees = allEmployees.length;
@@ -53,7 +53,7 @@ function EmployeesPage() {
   const updateEmployee = useUpdateEmployee();
   const deleteEmployee = useDeleteEmployee();
 
-  // Estado del modal de creación/edición — reemplaza al formulario en línea de la Clase 7
+  // Estado del modal de creación/edición
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [editingEmployee, setEditingEmployee] = useState<Employee | undefined>();
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -85,8 +85,8 @@ function EmployeesPage() {
     setModalOpen(true);
   }, []);
 
-  // React Hook Form ya validó los datos con Zod antes de llegar acá —
-  // esta función solo decide crear vs. actualizar y llama a la mutación correcta.
+  // React Hook Form ya validó los datos con Zod antes de llegar aquí;
+  // esta función solo decide si crea o actualiza y llama a la mutación correspondiente.
   const handleSubmit = useCallback(async (formData: EmployeeFormData) => {
     setSubmitError(null);
     try {
@@ -247,7 +247,7 @@ function EmployeesPage() {
         </div>
       )}
 
-      {/* Modal de creación/edición — React Hook Form + Zod */}
+      {/* Modal de creación/edición (React Hook Form + Zod) */}
       <Modal
         isOpen={modalOpen}
         title={editingEmployee ? `Editar: ${editingEmployee.name}` : 'Nuevo empleado'}

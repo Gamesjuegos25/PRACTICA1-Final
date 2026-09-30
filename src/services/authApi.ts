@@ -1,9 +1,9 @@
 // src/services/authApi.ts
 import axios from 'axios';
 import { useAuthStore } from '../store/authStore';
+import { notifyGlobalError } from '../utils/errorHandler';
 
-// URL de la instancia de API-RH asignada a tu grupo (Cloud Run), sin /api/v1.
-// El docente la entrega por canal privado junto con las credenciales.
+// URL base de API-RH (instancia en Cloud Run), sin /api/v1.
 const AUTH_BASE_URL = import.meta.env.VITE_AUTH_API_URL || '<API_BASE_URL_ASIGNADA>';
 
 export const authApiClient = axios.create({
@@ -36,6 +36,7 @@ authApiClient.interceptors.request.use((config) => {
 authApiClient.interceptors.response.use(
   (response) => response,
   async (error) => {
+    notifyGlobalError(error); // red caída, 403 y 5xx: un toast global
     const originalRequest = error.config;
     const isAuthEndpoint = originalRequest?.url?.includes('/auth/login')
       || originalRequest?.url?.includes('/auth/refresh');

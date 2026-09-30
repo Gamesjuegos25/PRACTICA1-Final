@@ -48,7 +48,7 @@ export const employeeSchema = z.object({
 
 export type EmployeeFormData = z.infer<typeof employeeSchema>;
 
-// Tipo de ENTRADA del schema (antes de que Zod corra z.coerce y los .default()) —
-// react-hook-form necesita este tipo para el formulario en sí, distinto del tipo
-// de SALIDA (EmployeeFormData) que recibe onSubmit una vez que el resolver ya validó.
+// Tipo de entrada del schema (antes de que Zod aplique z.coerce y los .default()):
+// react-hook-form lo usa para el formulario, distinto del tipo
+// de salida (EmployeeFormData) que recibe onSubmit una vez validado.
 export type EmployeeFormInput = z.input<typeof employeeSchema>;

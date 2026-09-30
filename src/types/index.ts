@@ -34,10 +34,10 @@ export interface Employee {
 export type CreateEmployeeDto = Omit<Employee, "id">;
 export type UpdateEmployeeDto = Partial<CreateEmployeeDto>;
 
-// --- Tipos de autenticación (JWT real contra API-RH, Clase 9) ---
+// --- Tipos de autenticación (JWT contra API-RH) ---
 
-// Roles que realmente emite el API-RH del docente (distintos del EmployeeRole
-// de arriba, que es un campo propio del empleado simulado de este mini-proyecto).
+// Roles que emite API-RH (distintos del EmployeeRole de arriba, que es un
+// campo del empleado del mock local).
 export type AuthRole = "ADMIN" | "HR_MANAGER" | "EMPLOYEE";
 
 export interface AuthUserRole {
