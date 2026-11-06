@@ -10,6 +10,7 @@ interface HeaderProps {
 
 const navItems: NavItem[] = [
   { path: '/dashboard', label: 'Dashboard', icon: '📊', allowedRoles: ['ADMIN', 'HR_MANAGER', 'EMPLOYEE'] },
+  { path: '/proveedores', label: 'Proveedores', icon: '📊', allowedRoles: ['ADMIN', 'HR_MANAGER'] },
   { path: '/empleados', label: 'Empleados', icon: '🧑‍💼', allowedRoles: ['ADMIN', 'HR_MANAGER'] },
 ];
 

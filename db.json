@@ -7,7 +7,7 @@
       "position": "Desarrolladora Frontend",
       "department": "Tecnología",
       "salary": 8500,
-      "hireDate": "2022-03-15",
+      "registryDate": "2022-03-15",
       "status": "active",
       "role": "employee",
       "avatarUrl": "https://i.pravatar.cc/64?img=1"
@@ -19,7 +19,7 @@
       "position": "Gerente de RRHH",
       "department": "Recursos Humanos",
       "salary": 12000,
-      "hireDate": "2019-07-01",
+      "registryDate": "2019-07-01",
       "status": "active",
       "role": "hr"
     },
@@ -30,7 +30,7 @@
       "position": "Contadora Senior",
       "department": "Finanzas",
       "salary": 9500,
-      "hireDate": "2021-01-20",
+      "registryDate": "2021-01-20",
       "status": "on_leave",
       "role": "employee"
     },
@@ -41,7 +41,7 @@
       "position": "Administrador del Sistema",
       "department": "Tecnología",
       "salary": 15000,
-      "hireDate": "2018-05-10",
+      "registryDate": "2018-05-10",
       "status": "active",
       "role": "admin"
     },
@@ -52,7 +52,7 @@
       "position": "Analista de Operaciones",
       "department": "Operaciones",
       "salary": 7800,
-      "hireDate": "2023-02-01",
+      "registryDate": "2023-02-01",
       "status": "inactive",
       "role": "employee"
     },
@@ -63,9 +63,80 @@
       "position": "Ejecutivo de Ventas",
       "department": "Ventas",
       "salary": 8200,
-      "hireDate": "2022-11-14",
+      "registryDate": "2022-11-14",
       "status": "active",
       "role": "employee"
     }
+  ],
+  
+   "suppliers": [
+    {
+      "id": 1,
+      "name": "Ana GA",
+      "email": "ana.garcia@empresa.com",
+      "phone":55555555,
+      "category": "tecnologia",
+      "calification": "5",  
+      "registryDate": "2022-03-15",
+      "status": "active",
+      "role": "supplier"
+    
+    },
+    {
+      "id": 2,
+      "name": "Ana GB",
+      "email": "ana.garcia@empresa.com",
+      "phone":55555555,
+      "category": "tecnologia",
+      "calification": "5",  
+      "registryDate": "2022-03-15",
+      "status": "active",
+      "role": "supplier"
+    },
+    {
+        "id": 3,
+      "name": "Ana GV",
+      "email": "ana.garcia@empresa.com",
+      "phone":55555555,
+      "category": "tecnologia",
+      "calification": "5",  
+      "registryDate": "2022-03-15",
+      "status": "active",
+      "role": "supplier"
+    },
+    {
+      "id": 4,
+      "name": "Ana GC",
+      "email": "ana.garcia@empresa.com",
+      "phone":55555555,
+      "category": "tecnologia",
+      "calification": "5",  
+      "registryDate": "2022-03-15",
+      "status": "active",
+      "role": "supplier"
+    },
+    {
+      "id": 5,
+      "name": "Ana GF",
+      "email": "ana.garcia@empresa.com",
+      "phone":55555555,
+      "category": "tecnologia",
+      "calification": "5",  
+      "registryDate": "2022-03-15",
+      "status": "active",
+      "role": "supplier"
+    },
+    {
+      "id": 6,
+      "name": "Ana CR ",
+      "email": "ana.garcia@empresa.com",
+      "phone":55555555,
+      "category": "tecnologia",
+      "calification": "5",  
+      "registryDate": "2022-03-15",
+      "status": "active",
+      "role": "supplier"
+    }
   ]
+  
 }

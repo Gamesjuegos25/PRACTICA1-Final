@@ -6,10 +6,12 @@ import { Toaster } from 'react-hot-toast';
 import Header from './layouts/Header';
 import LoginPage from './pages/LoginPage';
 import DashboardPage from './pages/DashboardPage';
+import SuppliersPage from './pages/SuppliersPage';
 import EmployeesPage from './pages/EmployeesPage';
 import ProtectedRoute from './components/ProtectedRoute';
 import RoleGuard from './components/RoleGuard';
 import { useAuthStore } from './store/authStore';
+
 
 // Layout con Header para páginas autenticadas
 function AppLayout({ children }: { children: ReactNode }) {
@@ -65,6 +67,18 @@ function App() {
             </AppLayout>
           </ProtectedRoute>
         } />
+
+         {/* proveedores */}
+        <Route path="/proveedores" element={
+          <ProtectedRoute>
+            <AppLayout>
+              <RoleGuard allowedRoles={['ADMIN', 'HR_MANAGER']}>
+                <SuppliersPage />
+              </RoleGuard>
+            </AppLayout>
+          </ProtectedRoute>
+        } />
+     
 
         {/* Redirigir raíz según autenticación */}
         <Route path="/" element={<Navigate to="/dashboard" replace />} />
